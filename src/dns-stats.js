@@ -6,13 +6,8 @@ const { NotImplementedError } = require('../extensions/index.js');
  * @param {Array} domains
  * @return {Object}
  *
- * @example
- * domains = [
- *  'code.yandex.ru',
- *  'music.yandex.ru',
- *  'yandex.ru'
- * ]
- *
+ @example
+ 
  * The result should be the following:
  * {
  *   '.ru': 3,
@@ -22,9 +17,31 @@ const { NotImplementedError } = require('../extensions/index.js');
  * }
  *
  */
-function getDNSStats(/* domains */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+domains = [
+  'code.yandex.ru',
+  'music.yandex.ru',
+  'yandex.ru'
+];
+
+function getDNSStats(domains) {
+  let result = {};
+  for (let i = 0; i < domains.length; i++) {
+    let input = domains[i];
+    let newInput = "";
+    while (input.lastIndexOf(".") > 0) {
+      const index = input.lastIndexOf(".");
+      const part = input.substring(index);
+      input = input.substring(0, index);
+      newInput += part;
+      isParamExists(result, newInput);
+    }
+    newInput += "." + input;
+    isParamExists(result, newInput);
+  }
+  return result;
+}
+function isParamExists(obj, param) {
+  param in obj ? obj[param] = obj[param] + 1 : obj[param] = 1;
 }
 
 module.exports = {
