@@ -11,7 +11,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For n = 152, the output should be 52
  *
  */
-console.log(deleteDigit(652));
 function deleteDigit(n) {
   let result = "";
   if (n > 9) {

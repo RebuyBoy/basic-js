@@ -20,8 +20,6 @@ const { NotImplementedError } = require('../extensions/index.js');
 // transform([1, 2, 3, '--double-prev', 4, 5])
 // // to deeply equal [ 1, 2, 3, 4, 5 ])
 // transform(['--double-next', 3])
-transform(['--discard-prev', 1, 2, 3]);
-transform([1, 2, 3, "--discard-next", 1337, "--double-prev", 4, 5]) //[ 1, 2, 3, 4, 5 ]
 
 function transform(arr) {
   if (!Array.isArray(arr)) {
@@ -45,8 +43,6 @@ function transform(arr) {
       }
     }
   }
-  console.log(arr);
-  console.log(a);
   return a;
 }
 

@@ -10,11 +10,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For aabbbc should return 2a3bc
  *
  */
-encodeLine("aabbbc");
-encodeLine("aaaatttt");
-encodeLine("abbcca");
-encodeLine("xyz");
-encodeLine("");
 function encodeLine(str) {
   let char = str.charAt(0);
   let result = "";

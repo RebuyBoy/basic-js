@@ -9,12 +9,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  * @example
  */
-matrix = [
-  [0, 1, 1, 2],
-  [0, 5, 0, 0],
-  [2, 0, 3, 3]
-]
-console.log(getMatrixElementsSum(matrix));
 // The result should be 9
 function getMatrixElementsSum(matrix) {
   let sum = 0;

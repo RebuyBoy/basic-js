@@ -11,11 +11,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  * 
  */
-getSeason("sdfsdf") // => 'spring'
+// getSeason("sdfsdf") // => 'spring'
 // getSeason() // => 'spring'
 
 function getSeason(date) {
-  console.log(typeof date);
   if (typeof date === "undefined") {
     throw new NotImplementedError("Unable to determine the time of year!");
   }
@@ -34,7 +33,6 @@ function getSeason(date) {
   } else if (month >= 8 && month <= 10) {
     result = "autumn";
   }
-  console.log(result);
   return result;
 }
 module.exports = {

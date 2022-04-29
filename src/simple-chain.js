@@ -39,7 +39,6 @@ const chainMaker = {
   },
 };
 
-console.log(chainMaker.addLink(true).addLink(false).addLink(3).removeLink(1).finishChain());
 // console.log(chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain());// '( null )~~( GHI )~~( 333 )~~( 0 )~~( GHI )'));
 // console.log(chainMaker.addLink(function () { }).addLink('2nd').addLink('3rd').removeLink("2nd").reverseChain().finishChain());//, '( 3rd )~~( function () { } )');
 // console.log(chainMaker.addLink('GHI').addLink(null).reverseChain().addLink(333).reverseChain().reverseChain().addLink(0).reverseChain().reverseChain().addLink('GHI').finishChain() === '( null )~~( GHI )~~( 333 )~~( 0 )~~( GHI )');

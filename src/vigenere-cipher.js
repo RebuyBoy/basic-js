@@ -6,29 +6,69 @@ const { NotImplementedError } = require('../extensions/index.js');
  * 
  * @example
  * 
- * const directMachine = new VigenereCipheringMachine();
- * 
- * const reverseMachine = new VigenereCipheringMachine(false);
- * 
- * directMachine.encrypt('attack at dawn!', 'alphonse') => 'AEIHQX SX DLLU!'
- * 
- * directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => 'ATTACK AT DAWN!'
- * 
- * reverseMachine.encrypt('attack at dawn!', 'alphonse') => '!ULLD XS XQHIEA'
- * 
- * reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') => '!NWAD TA KCATTA'
- * 
  */
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(direct) {
+    this.isDirect = direct;
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  encrypt(data, key) {
+    if (arguments.length < 2 || data === undefined || key === undefined) {
+      throw new NotImplementedError("Incorrect arguments!");
+    }
+    let keyIndex = 0;
+    let result = "";
+    for (let i = 0; i < data.length; i++) {
+      let dataChar = data.charAt(i);
+      if (/[A-Za-z]/.test(dataChar)) {
+        dataChar = dataChar.toUpperCase();
+        const keyChar = key.charAt(keyIndex).toUpperCase();
+        keyIndex = keyIndex + 1 > key.length - 1 ? 0 : keyIndex + 1;
+        let index = alphabet.indexOf(dataChar.toUpperCase()) + alphabet.indexOf(keyChar);
+        index = index > alphabet.length - 1 ? index - alphabet.length : index;
+        dataChar = alphabet.charAt(index);
+      }
+      result = result.concat(dataChar);
+    }
+    if (this.isDirect === false) {
+      result = result.split("").reverse().join("");
+    }
+    return result;
+
+  }
+  decrypt(data, key) {
+    if (arguments.length < 2 || data === undefined || key === undefined) {
+      throw new NotImplementedError("Incorrect arguments!");
+    }
+    let keyIndex = 0;
+    let result = "";
+    for (let i = 0; i < data.length; i++) {
+      let dataChar = data.charAt(i);
+      if (/[A-Za-z]/.test(dataChar)) {
+        dataChar = dataChar.toUpperCase();
+        const keyChar = key.charAt(keyIndex).toUpperCase();
+        keyIndex = keyIndex + 1 > key.length - 1 ? 0 : keyIndex + 1;
+        let index = alphabet.indexOf(dataChar.toUpperCase()) - alphabet.indexOf(keyChar);
+        index = index < 0 ? alphabet.length + index : index;
+        dataChar = alphabet.charAt(index);
+      }
+      result = result.concat(dataChar);
+    }
+    if (this.isDirect === false) {
+      result = result.split("").reverse().join("");
+    }
+    return result;
+
   }
 }
+// const directMachine = new VigenereCipheringMachine();
+// const reverseMachine = new VigenereCipheringMachine(false);
+// directMachine.encrypt('attack at dawn!', 'alphonse') //=> 'AEIHQX SX DLLU!'
+// directMachine.encrypt("asg", undefined) //=> 'AEIHQX SX DLLU!'
+// directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') //=> 'ATTACK AT DAWN!'
+// reverseMachine.encrypt('attack at dawn!', 'alphonse') //=> '!ULLD XS XQHIEA'
+// reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') //=> '!NWAD TA KCATTA'
 
 module.exports = {
   VigenereCipheringMachine

@@ -11,13 +11,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * @example
  * 
  * */
-repeater('STRING', {
-  repeatTimes: 3, separator: '**',
-  addition: 'PLUS', additionRepeatTimes: 3, additionSeparator: '00'
-})
-repeater('la', { repeatTimes: 3 });
-repeater(true, { repeatTimes: 3, separator: '??? ', addition: false, additionRepeatTimes: 2, additionSeparator: '!!!' })
-repeater('TESTstr', { separator: 'ds', addition: 'ADD!', additionSeparator: ')))000' });
 function repeater(str, options) {
   let result = "";
   if (options.repeatTimes > 0) {

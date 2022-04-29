@@ -11,8 +11,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  * @return {Array}
  *
  */
-renameFiles(["file", "file", "image", "file(1)", "file"]),
-  renameFiles(["file", "file(1)", "image", "file(1)(1)", "file(2)"]);
 function renameFiles(names) {
   let set = new Set();
   for (let i = 0; i < names.length; i++) {

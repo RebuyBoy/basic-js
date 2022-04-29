@@ -12,8 +12,6 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  * @example
  */
-console.log(isMAC48Address("00-1B-63-84-45-E6"));
-//, the output should be true.
 
 function isMAC48Address(n) {
   return /^([0-9A-F]{2}-){5}[0-9A-F]{2}$/.test(n);
