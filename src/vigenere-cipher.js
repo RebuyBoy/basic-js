@@ -15,7 +15,7 @@ class VigenereCipheringMachine {
   }
   encrypt(data, key) {
     if (arguments.length < 2 || data === undefined || key === undefined) {
-      throw new NotImplementedError("Incorrect arguments!");
+      throw new Error("Incorrect arguments!");
     }
     let keyIndex = 0;
     let result = "";
@@ -39,7 +39,7 @@ class VigenereCipheringMachine {
   }
   decrypt(data, key) {
     if (arguments.length < 2 || data === undefined || key === undefined) {
-      throw new NotImplementedError("Incorrect arguments!");
+      throw new Error("Incorrect arguments!");
     }
     let keyIndex = 0;
     let result = "";
@@ -62,13 +62,6 @@ class VigenereCipheringMachine {
 
   }
 }
-// const directMachine = new VigenereCipheringMachine();
-// const reverseMachine = new VigenereCipheringMachine(false);
-// directMachine.encrypt('attack at dawn!', 'alphonse') //=> 'AEIHQX SX DLLU!'
-// directMachine.encrypt("asg", undefined) //=> 'AEIHQX SX DLLU!'
-// directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') //=> 'ATTACK AT DAWN!'
-// reverseMachine.encrypt('attack at dawn!', 'alphonse') //=> '!ULLD XS XQHIEA'
-// reverseMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') //=> '!NWAD TA KCATTA'
 
 module.exports = {
   VigenereCipheringMachine

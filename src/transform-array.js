@@ -19,21 +19,24 @@ const { NotImplementedError } = require('../extensions/index.js');
 // //  => [1, 2, 3, 4, 4, 5]
 // transform([1, 2, 3, '--double-prev', 4, 5])
 // // to deeply equal [ 1, 2, 3, 4, 5 ])
-// transform(['--double-next', 3])
+console.log(transform([1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]));
 
 function transform(arr) {
   if (!Array.isArray(arr)) {
-    throw new NotImplementedError("'arr' parameter must be an instance of the Array!")
+    throw new Error('\'arr\' parameter must be an instance of the Array!')
   }
   let a = arr.slice();
   for (let i = 0; i < a.length; i++) {
     if (typeof a[i] === 'string') {
       if (a[i] === '--double-next') {
         i === a.length - 1 ? a.pop() : a[i] = a[i + 1];
-
       }
       if (a[i] === '--discard-next') {
-        i === a.length - 1 ? a.pop() : a.splice(i, 2);
+        let elemsRemove = 2;
+        if (a[i + 2] === "--double-prev" || a[i + 2] === "--discard-prev") {
+          elemsRemove++;
+        }
+        i === a.length - 1 ? a.pop() : a.splice(i, elemsRemove);
       }
       if (a[i] === '--double-prev') {
         i === 0 ? a.shift() : a[i] = a[i - 1];
