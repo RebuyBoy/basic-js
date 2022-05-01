@@ -65,6 +65,8 @@ const { NotImplementedError } = require('../extensions/index.js');
 // console.log(typeof date2);
 // console.log(getSeason(date2));
 // console.log(getSeason(fakeDate2));
+// Если аргумент `date` не был передан, функция должна вернуть строку `'Unable to determine the time of year!'`
+//  Если аргумент `date` **некорректный**, функция должна выбросить ошибку (`Error`) с сообщением `Invalid date!`.
 console.log(getSeason());
 
 function getSeason(date) {
@@ -74,9 +76,9 @@ function getSeason(date) {
   if (!(date instanceof Date)) {
     throw new Error("Invalid date!");
   }
-  // if (Object.getOwnPropertyDescriptors(date).length > 0) {
-  //   throw new Error("Invalid date!");
-  // }
+  if (Object.entries(date).length > 0) {
+    throw new Error("Invalid date!");
+  }
 
   const month = date.getMonth();
   let result = "";
